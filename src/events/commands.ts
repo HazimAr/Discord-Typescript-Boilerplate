@@ -30,7 +30,7 @@ export default class CommandHandler extends Event {
             const missing = userPermissions.missing(commandData.options.requiredPermissions);
             if (missing.length > 0) {
                 return interaction.reply({
-                    embeds: [new MessageEmbed().setTitle("").setDescription(`You are lacking the following permissio${missing.length > 1 ? 's' : ''}: ` + missing.map(p => `\`${p}\``).join(', '))],
+                    embeds: [new MessageEmbed().setTitle("").setDescription(`You are lacking the following permission${missing.length > 1 ? 's' : ''}: ` + missing.map(p => `\`${p}\``).join(', '))],
                     ephemeral: true
                 });
             }
