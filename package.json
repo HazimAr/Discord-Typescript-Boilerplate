@@ -1,0 +1,29 @@
+{
+  "name": "discord-typescript-boilerplate",
+  "version": "1.0.0",
+  "description": "A discord.js boilerplate to start building your bot with.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p .",
+    "start": "ts-node ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bunyan": "^1.8.8",
+    "@types/bunyan-format": "^0.2.4",
+    "@types/js-yaml": "^4.0.5",
+    "@types/node": "^17.0.13",
+    "dotenv": "^14.3.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@discordjs/builders": "^0.11.0",
+    "bunyan": "^1.8.15",
+    "bunyan-format": "^0.2.1",
+    "discord.js": "^13.5.0"
+  }
+}

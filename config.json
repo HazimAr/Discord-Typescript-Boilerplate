@@ -1,0 +1,10 @@
+{
+  "embeds": {
+    "primary": {
+      "color": "#548CFF"
+    },
+    "error": {
+      "color": "#F14A16"
+    }
+  }
+}
