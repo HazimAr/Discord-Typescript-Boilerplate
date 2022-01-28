@@ -20,7 +20,7 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "@discordjs/builders": "^0.11.0",
+    "@discordjs/builders": "^0.12.0",
     "bunyan": "^1.8.15",
     "bunyan-format": "^0.2.1",
     "discord.js": "^13.5.0"
