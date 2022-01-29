@@ -1,4 +1,4 @@
-import { ButtonInteraction, EmojiIdentifierResolvable, MessageButtonStyleResolvable } from "discord.js";
+import { ButtonInteraction } from "discord.js";
 
 export default class Button {
 	customId: string;
