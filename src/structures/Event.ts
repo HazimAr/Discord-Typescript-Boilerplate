@@ -9,7 +9,8 @@ export default class Event {
         this.event = event;
     }
 
-    exec(...any: any[]) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    exec(...any) {
         throw new Error("Method not implemented.");
     }
 

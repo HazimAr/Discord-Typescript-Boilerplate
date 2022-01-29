@@ -17,10 +17,12 @@ export default class SlashCommand {
         this.options = options;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     exec(interaction: Interaction) {
         throw new Error("Method not implemented.");
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     build(client: Client): SlashCommandBuilder | RESTPostAPIApplicationCommandsJSONBody {
         return new SlashCommandBuilder()
             .setName(this.name)

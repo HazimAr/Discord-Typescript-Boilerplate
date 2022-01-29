@@ -1,22 +1,22 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { client, commands } from '..';
-import Event from '../structures/Event';
-import { discordLogger } from '../utils/logger';
-import SlashCommand from '../structures/Command';
-import { RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types';
-import { ApplicationCommandData } from 'discord.js';
+import { SlashCommandBuilder } from "@discordjs/builders";
+import { client, commands } from "..";
+import Event from "../structures/Event";
+import { discordLogger } from "../utils/logger";
+import SlashCommand from "../structures/Command";
+import { RESTPostAPIApplicationCommandsJSONBody } from "discord-api-types";
+import { ApplicationCommandData } from "discord.js";
 
 const truthyFilter = <T>(x: T | false | undefined | "" | 0): x is T => !!x;
 
 export default class ReadyEvent extends Event {
-    constructor() { super('Ready', 'ready'); }
+    constructor() { super("Ready", "ready"); }
 
     async exec() {
         discordLogger.info(`🤖 Logged in as ${client?.user?.tag}!`);
         discordLogger.info(`📊 Currently in ${client?.guilds.cache.size} guilds.`);
 
-        if (['deploy', 'register', 'edit'].includes(process.argv[2])) {
-            discordLogger.debug(`Fetching application...`);
+        if (["deploy", "register", "edit"].includes(process.argv[2])) {
+            discordLogger.debug("Fetching application...");
             await client.application?.commands.fetch();
             discordLogger.debug(`Fetched ${client.application?.commands.cache.size} commands.`);
         }
@@ -39,17 +39,17 @@ export default class ReadyEvent extends Event {
             discordLogger.info(`${deploy ? "Deployed" : "Registered"} ${commands.size} command${commands.size > 1 ? "s" : ""}.`);
         }
 
-        if (process.argv[2] === 'edit') {
+        if (process.argv[2] === "edit") {
             const commandNames = process.argv.slice(3).map(cmd => cmd.toLowerCase());
             const commandsToEdit = commandNames.map(c => commands.get(c)).filter(truthyFilter);
 
             if (!commandsToEdit.length) {
-                discordLogger.warn(`Edit option requires at least one valid command to edit.`);
+                discordLogger.warn("Edit option requires at least one valid command to edit.");
                 return;
             }
 
             discordLogger.info(`Editing ${commandsToEdit.length} commands...`);
-            discordLogger.debug(commandsToEdit.map(cmd => cmd.name).join(', '));
+            discordLogger.debug(commandsToEdit.map(cmd => cmd.name).join(", "));
 
             const dataForCommands = commandsToEdit.map(cmd => client.application?.commands.cache.find(c => c.name === cmd.name));
 
@@ -70,7 +70,7 @@ export default class ReadyEvent extends Event {
 }
 
 function buildSlashCommand(command: SlashCommand): RESTPostAPIApplicationCommandsJSONBody {
-    var data = command.build(client);
+    let data = command.build(client);
     if (data instanceof SlashCommandBuilder) data = data.toJSON();
 
     return data;

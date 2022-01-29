@@ -1,12 +1,12 @@
-import discord, { MessageEmbed } from 'discord.js';
-import createLogger, { discordLogger } from '../utils/logger';
+import discord, { MessageEmbed } from "discord.js";
+import createLogger, { discordLogger } from "../utils/logger";
 
-import { commands } from '..';
-import Event from '../structures/Event';
+import { commands } from "..";
+import Event from "../structures/Event";
 
 
 export default class CommandHandler extends Event {
-    constructor() { super('Command', 'interactionCreate'); }
+    constructor() { super("Command", "interactionCreate"); }
 
     exec(interaction: discord.Interaction) {
         if (!interaction.isCommand()) return;
@@ -30,7 +30,7 @@ export default class CommandHandler extends Event {
             const missing = userPermissions.missing(commandData.options.requiredPermissions);
             if (missing.length > 0) {
                 return interaction.reply({
-                    embeds: [new MessageEmbed().setTitle("").setDescription(`You are lacking the following permission${missing.length > 1 ? 's' : ''}: ` + missing.map(p => `\`${p}\``).join(', '))],
+                    embeds: [new MessageEmbed().setTitle("").setDescription(`You are lacking the following permission${missing.length > 1 ? "s" : ""}: ` + missing.map(p => `\`${p}\``).join(", "))],
                     ephemeral: true
                 });
             }
@@ -41,8 +41,8 @@ export default class CommandHandler extends Event {
         } catch (error) {
             const cmdLogger = createLogger(commandData.name);
             cmdLogger.error(`Failed to run command ${commandData.name}:`, error);
-            cmdLogger.error(`Command ran by ${interaction.user.tag} (${interaction.user.id}) in ${interaction.guild?.name ?? 'Not in guild'} (${interaction.guild?.id ?? 'N/A'})`);
-            cmdLogger.error(`Command options:`, interaction.options.resolved);
+            cmdLogger.error(`Command ran by ${interaction.user.tag} (${interaction.user.id}) in ${interaction.guild?.name ?? "Not in guild"} (${interaction.guild?.id ?? "N/A"})`);
+            cmdLogger.error("Command options:", interaction.options.resolved);
         }
     }
 }

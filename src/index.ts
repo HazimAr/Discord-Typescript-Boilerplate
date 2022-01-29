@@ -1,17 +1,17 @@
-import Discord from 'discord.js';
+import Discord from "discord.js";
 
 export const client = new Discord.Client({
     intents: [Discord.Intents.FLAGS.GUILDS]
 });
 
-import fs from 'fs';
-import path from 'path';
-import { discordLogger } from './utils/logger';
+import fs from "fs";
+import path from "path";
+import { discordLogger } from "./utils/logger";
 import { config } from "dotenv";
 config();
 
-discordLogger.info('Loading all events...');
-import Event from './structures/Event';
+discordLogger.info("Loading all events...");
+import Event from "./structures/Event";
 async function loadEvents(dir = path.resolve(__dirname, "./events")) {
     const files = await fs.promises.readdir(dir);
     for (const file of files) {
@@ -30,7 +30,7 @@ async function loadEvents(dir = path.resolve(__dirname, "./events")) {
 }
 
 discordLogger.info("Loading all commands...");
-import Command from './structures/Command';
+import Command from "./structures/Command";
 export const commands = new Discord.Collection<string, Command>();
 async function loadCommands(dir = path.resolve(__dirname, "./commands")) {
     const files = fs.readdirSync(dir);
@@ -52,7 +52,7 @@ async function loadCommands(dir = path.resolve(__dirname, "./commands")) {
 }
 
 discordLogger.info("Loading all buttons...");
-import Button from './structures/Button';
+import Button from "./structures/Button";
 export const buttons = new Discord.Collection<string, Button>();
 async function loadButtons(dir = path.resolve(__dirname, "./buttons")) {
     const files = fs.readdirSync(dir);
@@ -75,6 +75,6 @@ async function loadButtons(dir = path.resolve(__dirname, "./buttons")) {
 
 Promise.all([loadEvents(), loadCommands(), loadButtons()]).then(() => {
     discordLogger.info("Finished loading commands and events.");
-    discordLogger.info(`Connecting to Discord...`);
+    discordLogger.info("Connecting to Discord...");
     client.login(process.env.TOKEN);
 });

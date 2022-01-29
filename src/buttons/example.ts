@@ -10,7 +10,7 @@ export default class ExampleButton extends Button {
 	exec(interaction: ButtonInteraction) {
 		interaction.reply({
 			embeds: [
-				new MessageEmbed().setTitle('Example title').setDescription("Example description here")
+				new MessageEmbed().setTitle("Example title").setDescription("Example description here")
 			]
 		});
 	}
