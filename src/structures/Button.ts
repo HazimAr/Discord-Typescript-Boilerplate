@@ -3,7 +3,7 @@ import { ButtonInteraction, EmojiIdentifierResolvable, MessageButtonStyleResolva
 export default class Button {
 	customId: string;
 
-	constructor(customId: string, label: string, style: MessageButtonStyleResolvable, emoji?: EmojiIdentifierResolvable) {
+	constructor(customId: string) {
 		this.customId = customId;
 	}
 

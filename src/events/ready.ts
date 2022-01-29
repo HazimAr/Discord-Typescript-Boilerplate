@@ -4,12 +4,12 @@ import Event from '../structures/Event';
 import { discordLogger } from '../utils/logger';
 import SlashCommand from '../structures/Command';
 import { RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types';
-import { ApplicationCommandData, MessageActionRow, MessageButton, TextChannel } from 'discord.js';
+import { ApplicationCommandData } from 'discord.js';
 
 const truthyFilter = <T>(x: T | false | undefined | "" | 0): x is T => !!x;
 
 export default class ReadyEvent extends Event {
-    constructor() { super('Ready', 'ready'); };
+    constructor() { super('Ready', 'ready'); }
 
     async exec() {
         discordLogger.info(`🤖 Logged in as ${client?.user?.tag}!`);
@@ -24,7 +24,7 @@ export default class ReadyEvent extends Event {
         if (process.argv[2] === "deploy" || process.argv[2] === "register") {
             const deploy = process.argv[2] === "deploy";
 
-            discordLogger.info(`${deploy ? "Deploying" : "Registering"} ${commands.size} commands...`);
+            discordLogger.info(`${deploy ? "Deploying" : "Registering"} ${commands.size} command${commands.size > 1 ? "s" : ""}...`);
 
             const commandsToDeploy =
                 !deploy ? commands.filter(c => client.application?.commands.cache.some(cmd => cmd.name === c.name) === false).values()
@@ -36,7 +36,7 @@ export default class ReadyEvent extends Event {
                 discordLogger.debug(`${deploy ? "Deployed" : "Registered"} command ${command.name}.`);
             }
 
-            discordLogger.info(`${deploy ? "Deployed" : "Registered"} ${commands.size} commands.`);
+            discordLogger.info(`${deploy ? "Deployed" : "Registered"} ${commands.size} command${commands.size > 1 ? "s" : ""}.`);
         }
 
         if (process.argv[2] === 'edit') {

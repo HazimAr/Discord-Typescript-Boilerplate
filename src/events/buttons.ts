@@ -6,7 +6,7 @@ import Event from '../structures/Event';
 
 
 export default class ButtonHandler extends Event {
-	constructor() { super('Button', 'interactionCreate'); };
+	constructor() { super('Button', 'interactionCreate'); }
 
 	exec(interaction: discord.Interaction) {
 		if (!interaction.isButton()) return;

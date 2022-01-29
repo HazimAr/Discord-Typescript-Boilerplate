@@ -6,7 +6,7 @@ import Event from '../structures/Event';
 
 
 export default class CommandHandler extends Event {
-    constructor() { super('Command', 'interactionCreate'); };
+    constructor() { super('Command', 'interactionCreate'); }
 
     exec(interaction: discord.Interaction) {
         if (!interaction.isCommand()) return;

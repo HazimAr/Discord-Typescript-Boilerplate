@@ -10,7 +10,7 @@ export default class ExampleCommand extends SlashCommand {
     exec(interaction: CommandInteraction) {
         interaction.reply({
             embeds: [
-                new MessageEmbed().setTitle('').setDescription("Yay this works!")
+                new MessageEmbed().setTitle('Example title').setDescription("Example description here")
             ]
         });
     }
