@@ -4,7 +4,7 @@ import Event from '../structures/Event';
 import { discordLogger } from '../utils/logger';
 import SlashCommand from '../structures/Command';
 import { RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types';
-import { ApplicationCommandData } from 'discord.js';
+import { ApplicationCommandData, MessageActionRow, MessageButton, TextChannel } from 'discord.js';
 
 const truthyFilter = <T>(x: T | false | undefined | "" | 0): x is T => !!x;
 

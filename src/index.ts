@@ -27,7 +27,7 @@ async function loadEvents(dir = path.resolve(__dirname, "./events")) {
         event.register(client);
         discordLogger.info(`Loaded event ${event.name} (${event.event})`);
     }
-};
+}
 
 discordLogger.info("Loading all commands...");
 import Command from './structures/Command';
@@ -49,9 +49,31 @@ async function loadCommands(dir = path.resolve(__dirname, "./commands")) {
 
         discordLogger.info(`Loaded command ${command.name} from ${file}`);
     }
-};
+}
 
-Promise.all([loadEvents(), loadCommands()]).then(() => {
+discordLogger.info("Loading all buttons...");
+import Button from './structures/Button';
+export const buttons = new Discord.Collection<string, Button>();
+async function loadButtons(dir = path.resolve(__dirname, "./buttons")) {
+    const files = fs.readdirSync(dir);
+    for (const file of files) {
+        const fileDesc = fs.statSync(dir + "/" + file);
+
+        if (fileDesc.isDirectory()) {
+            await loadButtons(dir + "/" + file);
+            continue;
+        }
+
+        const loadedButton = await import(dir + "/" + file);
+        const button: Button = new loadedButton.default();
+
+        buttons.set(button.customId, button);
+
+        discordLogger.info(`Loaded button ${button.customId} from ${file}`);
+    }
+}
+
+Promise.all([loadEvents(), loadCommands(), loadButtons()]).then(() => {
     discordLogger.info("Finished loading commands and events.");
     discordLogger.info(`Connecting to Discord...`);
     client.login(process.env.TOKEN);
