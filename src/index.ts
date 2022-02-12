@@ -33,22 +33,22 @@ discordLogger.info("Loading all commands...");
 import Command from "./structures/Command";
 export const commands = new Discord.Collection<string, Command>();
 async function loadCommands(dir = path.resolve(__dirname, "./commands")) {
-    const files = fs.readdirSync(dir);
-    for (const file of files) {
-        const fileDesc = fs.statSync(dir + "/" + file);
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    const fileDesc = fs.statSync(dir + "/" + file);
 
-        if (fileDesc.isDirectory()) {
-            await loadCommands(dir + "/" + file);
-            continue;
-        }
-
-        const loadedCommand = await import(dir + "/" + file);
-        const command: Command = new loadedCommand.default();
-
-        commands.set(command.name, command);
-
-        discordLogger.info(`Loaded command ${command.name} from ${file}`);
+    if (fileDesc.isDirectory()) {
+      await loadCommands(dir + "/" + file);
+      continue;
     }
+
+    const loadedCommand = await import(dir + "/" + file);
+    const command: Command = new loadedCommand.default();
+
+    commands.set(command.metaData.name, command);
+
+    discordLogger.info(`Loaded command ${command.metaData.name} from ${file}`);
+  }
 }
 
 discordLogger.info("Loading all buttons...");
