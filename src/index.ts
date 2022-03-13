@@ -9,9 +9,6 @@ export const client = new Discord.Client({
   intents: [Discord.Intents.FLAGS.GUILDS],
 });
 
-import Logger from "./utils/loggerMessage";
-export const logger = new Logger("main", client);
-
 import fs from "fs";
 import path from "path";
 import { discordLogger } from "./utils/logger";
