@@ -12,10 +12,7 @@ if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir);
 }
 
-/**
- * @returns {bunyan}
- */
-export default function createLogger(name: string): bunyan {
+export default function createLogger(name: string) {
   if (loggers.has(name)) return loggers.get(name);
 
   const logger = bunyan.createLogger({
