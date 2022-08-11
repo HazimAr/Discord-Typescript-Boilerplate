@@ -31,6 +31,6 @@
     "@discordjs/builders": "^0.13.0",
     "bunyan": "^1.8.15",
     "bunyan-format": "^0.2.1",
-    "discord.js": "^13.7.0"
+    "discord.js": "^14.2.0"
   }
 }
