@@ -28,7 +28,7 @@
     "eslint": "^8.15.0"
   },
   "dependencies": {
-    "@discordjs/builders": "^0.13.0",
+    "@discordjs/builders": "^1.2.0",
     "bunyan": "^1.8.15",
     "bunyan-format": "^0.2.1",
     "discord.js": "^13.7.0"
